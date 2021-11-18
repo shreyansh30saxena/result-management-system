@@ -1,0 +1,88 @@
+<html>
+	<head>
+		<title>Result Management</title>
+		<link rel="stylesheet" href="style.css">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0">
+		<link rel = "icon" href = "https://media.geeksforgeeks.org/wp-content/cdn-uploads/gfg_200X200.png" type = "image/x-icon">
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<link rel="preconnect" href="https://fonts.googleapis.com"> 
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
+		<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+		<link rel="shortcut icon" type="image/x-icon" href="images/logo.png">
+	</head>
+	<body id="adminbg">
+		
+		<section class="mid">
+            <div class="container" align=center>
+                <br>
+                <h3>Welcome, {{user.name}}</h3>
+                <div class="row shadow">
+                     <h3><br>List of Students<br> (Only those who have been graded, click add result to grade others)</h3>
+                     <hr class="style-one"><br>
+                     <br>
+                     <table class="table table-striped" style="background-color: white;">
+                         <tr align=center>
+                            <th>Name</th>
+                            <th>Roll Number</th>
+							<th>Date of Birth</th>
+							<th>Result</th>
+                            <th></th>   
+                         </tr>
+                         {{#each row}}
+                          <tr align=center>
+                             <td style="vertical-align: middle;font-size: 30px;">{{this.name}}</td>
+							 <td style="vertical-align: middle;font-size: 30px;">{{this.roll_no}}</td>
+							 <td style="vertical-align: middle;font-size: 30px;">{{this.dob}}</td>
+							 <td style="vertical-align: middle;font-size: 30px;">{{this.score}}</td>
+                         </tr>
+                         {{/each}}
+                     </table>
+                </div> <br>
+                <btn class="btn btn-primary" id="sbmtbtn" onclick="document.getElementById('addform').style.display='block';">Add Result</btn>
+                <btn class="btn btn-primary" id="sbmtbtn" onclick="document.getElementById('addform').style.display='block';">Edit Record</btn>	
+                <btn class="btn btn-primary" id="sbmtbtn" onclick="document.getElementById('delform').style.display='block';">Delete Record</btn>
+                <a href="/auth/logout" class="btn btn-danger">Logout</a>		
+            </div>
+            <br>
+            <div id="addform" style="display: none;">
+                <form class="shadow row g-3 forml"  action="/auth/registerteacher2" method="POST">
+                                <h1 style="color:black"><i class="fa fa-pencil" style="color:white"></i> Add/Edit Record</h1>
+                                <div class="col-12">
+                                    <input type="text" name="name" class="form-control name" id="inputAddress" placeholder="Name" required>
+                                </div>
+                                <div class="col-12">
+                                    <input type="email" name="email" class="form-control email" id="inputAddress" placeholder="Email" required>
+                                </div>
+                                <div class="col-12">
+                                    <input type="text" name="roll_no" class="form-control roll_no" id="inputAddress" placeholder="Roll Number" required>
+                                </div>
+                                <div class="col-12">
+                                    <input type="text" name="dob" class="form-control dob" id="inputAddress" placeholder="Date of Birth" required>
+                                </div>
+                                 <div class="col-12">
+                                    <input type="text" name="score" class="form-control score" id="inputAddress" placeholder="Score" required>
+                                </div>		                               					
+                                <div class="col-12">
+                                    <button id="sbmtbtn" type="submit" class="btn btn-primary submit">Submit</button>
+                                </div>
+                            </form>
+            </div>
+            <div id="delform" style="display: none;">
+                <form class="shadow row g-3 forml"  action="/auth/deletestudent" method="POST">
+                                <h1 style="color:black"><i class="fa fa-pencil" style="color:white"></i> Delete Record</h1>
+                                <div class="col-12">
+                                    <input type="text" name="name" class="form-control name" id="inputAddress" placeholder="Name" required>
+                                </div>
+                                <div class="col-12">
+                                    <input type="email" name="email" class="form-control email" id="inputAddress" placeholder="Email" required>
+                                </div>                               					
+                                <div class="col-12">
+                                    <button id="sbmtbtn" type="submit" class="btn btn-primary submit">Submit</button>
+                                </div>
+                            </form>
+            </div>
+		</section>
+	</body>
+</html>
